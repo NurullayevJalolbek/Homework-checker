@@ -66,46 +66,46 @@
             <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
         </li> -->
         <li class="menu-item">
-            <a href="app-homework.html" class="menu-link">
+            <a href="{{ route('students.homework.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div class="text-truncate" data-i18n="Homework">Homework</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="app-homework-submissions.html" class="menu-link">
+            <a href="{{ route('students.homework-submissions.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-task"></i>
                 <div class="text-truncate" data-i18n="Homework Submissions">Homework Submissions</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="app-homework-results.html" class="menu-link">
+            <a href="{{ route('students.homework-results.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-check-circle"></i>
                 <div class="text-truncate" data-i18n="Homework Results">Homework Results</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="app-vocabulary-practice.html" class="menu-link">
+            <a href="{{ route('students.vocabulary-practice.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-volume-full"></i>
                 <div class="text-truncate" data-i18n="Vocabulary Practice">Vocabulary Practice</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-students.html" class="menu-link">
+            <a href="{{route('admin.students.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div class="text-truncate" data-i18n="Students">Students</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-vocabularies.html" class="menu-link">
+            <a href="{{route('admin.vocabularies.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-library"></i>
                 <div class="text-truncate" data-i18n="Vocabularies">Vocabularies</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-students-results.html" class="menu-link">
+            <a href="{{route('admin.student-results.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-pie-chart"></i>
                 <div class="text-truncate" data-i18n="Students Results">Students Results</div>
             </a>
@@ -119,17 +119,17 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="app-ecommerce-dashboard.html" class="menu-link">
+                    <a href="{{route('admin.homework.index')}}" class="menu-link">
                         <div class="text-truncate" data-i18n="Homework">Homework</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-ecommerce-dashboard.html" class="menu-link">
+                    <a href="{{route('admin.homework-questions.index')}}" class="menu-link">
                         <div class="text-truncate" data-i18n="Homework questions">Homework questions</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-ecommerce-dashboard.html" class="menu-link">
+                    <a href="{{route('admin.homework-types.index')}}" class="menu-link">
                         <div class="text-truncate" data-i18n="Homework types">Homework types</div>
                     </a>
                 </li>
