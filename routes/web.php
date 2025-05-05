@@ -14,9 +14,6 @@ use App\Http\Controllers\Admin\AdminhomeworkQuestionController;
 use App\Http\Controllers\Admin\AdminHomeworkTypesController;
 
 
-Route::get('/', function () {
-    return view('layouts.app');
-})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,7 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
+    Route::get('/', function () {
+        return view('layouts.app');
+    })->name('home');
+    
     Route::group(['prefix'=>'admin', 'as'=>'admin.'], function(){
 
         Route::group(['prefix'=>'student-results', 'as'=>'student-results.'], function(){
