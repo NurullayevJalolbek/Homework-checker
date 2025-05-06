@@ -24,9 +24,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/', function () {
-        return view('layouts.app');
-    })->name('home');
     
     Route::group(['prefix'=>'admin', 'as'=>'admin.'], function(){
 
@@ -53,6 +50,11 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix'=>'homework', 'as'=>'homework.'], function(){
             Route::controller(AdminHomeworkController::class)->group(function(){
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::put('/edit/{id}', 'update')->name('update');
+                Route::delete('/delete-homework/{id}', 'destroy')->name('destroy');
             });
         });
 
