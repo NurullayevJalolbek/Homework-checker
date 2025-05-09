@@ -65,75 +65,82 @@
         <!-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
         </li> -->
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('students.homework.index') ? 'active' : '' }}">
             <a href="{{ route('students.homework.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div class="text-truncate" data-i18n="Homework">Homework</div>
             </a>
         </li>
 
-        <li class="menu-item">
+
+        <li class="menu-item {{ request()->routeIs('students.homework-submissions.index') ? 'active' : '' }}">
             <a href="{{ route('students.homework-submissions.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-task"></i>
                 <div class="text-truncate" data-i18n="Homework Submissions">Homework Submissions</div>
             </a>
         </li>
 
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('students.homework-results.index') ? 'active' : '' }}">
             <a href="{{ route('students.homework-results.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-check-circle"></i>
                 <div class="text-truncate" data-i18n="Homework Results">Homework Results</div>
             </a>
         </li>
 
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('students.vocabulary-practice.index') ? 'active' : '' }}">
             <a href="{{ route('students.vocabulary-practice.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-volume-full"></i>
                 <div class="text-truncate" data-i18n="Vocabulary Practice">Vocabulary Practice</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="{{route('admin.students.index')}}" class="menu-link">
+        @if(auth()->user()->role->name == 'admin')
+
+        <li class="menu-item {{ request()->routeIs('admin.students.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.students.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div class="text-truncate" data-i18n="Students">Students</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="{{route('admin.vocabularies.index')}}" class="menu-link">
+        <li class="menu-item {{ request()->routeIs('admin.vocabularies.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.vocabularies.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-library"></i>
                 <div class="text-truncate" data-i18n="Vocabularies">Vocabularies</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="{{route('admin.student-results.index')}}" class="menu-link">
+
+        <li class="menu-item {{ request()->routeIs('admin.student-results.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.student-results.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-pie-chart"></i>
                 <div class="text-truncate" data-i18n="Students Results">Students Results</div>
             </a>
         </li>
 
-        <!-- e-commerce-app menu start -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div class="text-truncate" data-i18n="Homework Settings">Homework Settings</div>
+        <li class="menu-item {{ request()->routeIs('admin.homework.index') || request()->routeIs('admin.homework-questions.index') || request()->routeIs('admin.homework-types.index') ? 'active open' : '' }}">
+    <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-cog"></i>
+        <div class="text-truncate" data-i18n="Homework Settings">Homework Settings</div>
+    </a>
+    <ul class="menu-sub {{ request()->routeIs('admin.homework.index') || request()->routeIs('admin.homework-questions.index') || request()->routeIs('admin.homework-types.index') ? 'show' : '' }}">
+        <li class="menu-item {{ request()->routeIs('admin.homework.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.homework.index') }}" class="menu-link">
+                <div class="text-truncate" data-i18n="Homework">Homework</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{route('admin.homework.index')}}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Homework">Homework</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{route('admin.homework-questions.index')}}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Homework questions">Homework questions</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{route('admin.homework-types.index')}}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Homework types">Homework types</div>
-                    </a>
-                </li>
-            </ul>
         </li>
+        <li class="menu-item {{ request()->routeIs('admin.homework-questions.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.homework-questions.index') }}" class="menu-link">
+                <div class="text-truncate" data-i18n="Homework questions">Homework questions</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->routeIs('admin.homework-types.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.homework-types.index') }}" class="menu-link">
+                <div class="text-truncate" data-i18n="Homework types">Homework types</div>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+        <!-- e-commerce-app menu ends -->
+        @endif
     </ul>
 </aside>

@@ -7,6 +7,7 @@
     data-theme="theme-default"
     data-assets-path="{{ asset('assets') }}/"
     data-template="vertical-menu-template">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
@@ -45,6 +46,19 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <style>
+        .show.menu-item.active .menu-link {
+            background-color: #3498db;
+            /* Ko'k rang */
+            color: #fff;
+            /* Oq rangdagi matn */
+        }
+
+        .menu-item.active .menu-icon {
+            color: #fff;
+            /* Ikonkaning rangini oq qilish */
+        }
+    </style>
 
 </head>
 
@@ -63,6 +77,31 @@
                         <div class="container-xxl flex-grow-1 container-p-y">
                             @yield('activePage')
                             @yield('content')
+                            <div aria-live="polite" aria-atomic="true" class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 9999;">
+                                @if (session('success'))
+                                <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            {{ session('success') }}
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if (session('error'))
+                                <div class="toast align-items-center text-white bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            {{ session('error') }}
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+
+
                         </div>
                     </div>
                     @include('layouts.footer')
@@ -97,6 +136,31 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.forEach(function(toastEl) {
+                new bootstrap.Toast(toastEl, {
+                    delay: 1500
+                }).show();
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelectorAll('.menu-toggle');
+
+            menuToggle.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const submenu = this.nextElementSibling;
+                    if (submenu.classList.contains('show')) {
+                        submenu.classList.remove('show');
+                    } else {
+                        submenu.classList.add('show');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

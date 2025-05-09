@@ -2,30 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+use App\Traits\Scopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class StudentHomeworkResult extends Model
 {
-    use HasFactory;
+    use HasFactory, Scopes;
 
-    protected $fillable =[
-        'student_id',
-        'homework_id',
-        'total_questions',
-        'correct_answers',
-        'score',
-        'incorrect_answers',
+    protected $fillable = ['student_id', 'homework_id', 'total_questions', 'correct_answers', 'score', 'incorrect_answers'];
+
+    protected $casts = [
+        'incorrect_answers' => 'array',
     ];
 
-    protected $casts =['incorrect_amswers'=>'array'];
-
-    public function student(){
+    public function student()
+    {
         return $this->belongsTo(User::class, 'student_id');
     }
 
-    public function homework(){
+    public function homework()
+    {
         return $this->belongsTo(Homework::class);
     }
 }

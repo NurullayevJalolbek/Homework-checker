@@ -18,7 +18,7 @@ trait Scopes
 
     public function scopeWhereEqual($query, $tableField, $requestField = null, $request = null): void
     {
-        $request = getRequest($request);
+        $request = request();
         $requestField = $requestField ?? $tableField;
         if (!in_array($request->$requestField, [null, 'undefined']))
             $query->where($tableField, $request->$requestField);
@@ -52,7 +52,7 @@ trait Scopes
 
     public function scopeWhereHasEqual($query, $relationName, $tableField, $requestField = null, $request = null): void
     {
-        $request = getRequest($request);
+        $request = request();
         $requestField = $requestField ?? $tableField;
         if (!in_array($request->$requestField, [null, 'undefined']))
             $query->whereHas($relationName, function ($query) use ($tableField, $requestField, $request) {

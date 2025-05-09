@@ -2,39 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Scopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\Model;
 
 class HomeworkQuestion extends Model
 {
-    use HasFactory;
+    use HasFactory, Scopes;
 
-    protected $table = 'homework_questions';
+    protected $fillable = ['homework_id', 'questions', 'correct_answers', 'answer_template', 'tip'];
 
-    protected $fillable =[
-        'homework_id',
-        'questions',
-        'correct_answers',
-        'answer_template',
-        'tip',
+    protected $casts = [
+        'questions' => 'array',
+        'correct_answers' => 'array',
+        'answer_template' => 'array',
+        'tip'=> 'array',
     ];
 
-    protected $guarded = ['id'];
 
-
-    protected  $casts = [
-        'correct_answers'=>'array',
-        'auestions'=>'array',
-        'answer_template'=>'array',
-        'tip'=>'array'
-    ];
-
-    public function getQuestionsAttribute($value){
+    public function getQuestionsAttribute($value)
+    {
         return json_decode($value, true);
     }
 
-    public function setQuestionsAttribute ($value){
+    public function setQuestionsAttribute($value)
+    {
         $this->attributes['questions'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
@@ -42,13 +34,14 @@ class HomeworkQuestion extends Model
     {
         return json_decode($value, true);
     }
-    public function setCorrectAnswerAttribute ($value){
+
+    public function setCorrectAnswerAttribute($value)
+    {
         $this->attributes['correct_answers'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
-    public function homework(){
+
+    public function homework()
+    {
         return $this->belongsTo(Homework::class);
     }
-    
-
-
 }

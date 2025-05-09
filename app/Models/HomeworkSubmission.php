@@ -2,38 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Scopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class HomeworkSubmission extends Model
 {
-    use HasFactory;
+    use HasFactory, Scopes;
 
-    protected $table = 'homework_submissions';
-
-    protected $fillable =[
-        'student_id',
-        'homework_id',
-        'answers',
-        'status',
-        'score'
-    ];
-
-    protected $guarded =[
-        'id'
-    ];
+    protected $fillable = ['student_id', 'homework_id', 'answers', 'status', 'score'];
 
     protected $casts = [
-        'answers'=>'array'
+        'answers' => 'array',
     ];
 
-    public function student(){
+    public function student()
+    {
         return $this->belongsTo(User::class, 'student_id');
     }
-    public function homework(){
-        return $this-> belongsTo(Homework::class);
-    }
 
+    public function homework()
+    {
+        return $this->belongsTo(Homework::class);
+    }
 
 
 }
